@@ -264,9 +264,14 @@ const matchForms = function (features, pokemon) {
             for (let looper = 0; looper < pokemon.models.length; ++looper) {
                 let model = pokemon.models[looper];
                 if (Index.isValidModel(pokemon.id, looper)) {
+                    let fileNames = [];
+                    for (let i = 0; i < 9; i++) {
+                        fileNames.push(("00000" + ((model.file) * 9 + 1 + i)).slice(-5) + ".bin");
+                    }
                     models.push({
                         "id": `pokemon-${("00" + pokemon.id).slice(-3)}-${looper}`,
                         "file": model.file,
+                        "fileNames": fileNames,
                         "chains": Index.chains[Index.list[parseInt(pokemon.id) - 1].evolution],
                         "form": matchForms(model.features, Index.list[parseInt(pokemon.id) - 1]),
                         "pokemon": Index.list[parseInt(pokemon.id) - 1],
@@ -277,8 +282,11 @@ const matchForms = function (features, pokemon) {
             }
         }
 
-        this.next(models);
+    //@.fs.writeFile('Y:\\modelsinfo.json', JSON.stringify(models))
 
+        //console.log(models)
+
+        this.next(models);
     });
 
 });

@@ -10,7 +10,7 @@ const Index = function Index(path) {
 
     this.path = path;
 
-    let async = @.fs.readFile(@path(path, "file_00000.bin")).then(function (result) {
+    let async = @.fs.readFile(@path(path, "00000.bin")).then(function (result) {
 
         let reader = new Loader.Reader(result);
 
@@ -75,7 +75,8 @@ Index.prototype.loadPokemon = function (id, offset, options, progress) {
     }
 
     let getFileName = (id) => {
-        return @path(index.path, "file_" + ("00000" + id).slice(-5) + ".pc");
+        return @path(index.path,("00000" + id).slice(-5) + ".bin");
+        // return @path(index.path, "file_" + ("00000" + id).slice(-5) + ".bin");
     };
 
     let pokemon = index.pokemons[id - 1];
@@ -99,9 +100,10 @@ Index.prototype.loadPokemon = function (id, offset, options, progress) {
         if ((offset + newOffset >= 0) && (newOffset !== 0)) {
             ids.unshift(file + 9 * newOffset);
         }
+        //console.log(ids);
 
         return @.async.all(ids, function (id) {
-
+            //console.log(getFileName(id));
             new Loader(getFileName(id)).load(null, usage).then(function (pc) {
 
                 pc.files.forEach((file, index) => {
