@@ -296,7 +296,7 @@ const matchForms = function (features, pokemon) {
     let id = `pokemon-${("00" + request.pokemon).slice(-3)}-${request.model}`;
 
     let basePath = @path(@mewchan().libraryPath, "pkmsm/models", id);
-
+        //wqer
     if (@.fs.exists(@path(basePath, "model.ready"))) {
         return @.fs.readFile(@path(basePath, "model.json"), "utf8").then(function (data) {
             this.next(JSON.parse(data));
@@ -345,6 +345,7 @@ const matchForms = function (features, pokemon) {
 
         const saveModel = (id, json, extra, baseOrder) => {
 
+            //console.log(json)
             let basePath = @path(@mewchan().libraryPath, "pkmsm/models", id);
 
             let dict = {};

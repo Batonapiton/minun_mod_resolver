@@ -107,6 +107,8 @@ Index.prototype.loadPokemon = function (id, offset, options, progress) {
             new Loader(getFileName(id)).load(null, usage).then(function (pc) {
 
                 pc.files.forEach((file, index) => {
+                    //console.log("file")
+                    //console.log(file)
                     if (file) {
                         finalPC.files[index] = file;
                     } else if (!finalPC.files.hasOwnProperty(index)) {

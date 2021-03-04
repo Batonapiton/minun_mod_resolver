@@ -45,6 +45,7 @@ const Motion = function Motion(reader) {
         switch (section.type) {
             case MotionHeader: {
 
+                //тут
                 this.frames = reader.readUint32();
                 this.flags = [reader.readUint16(), reader.readUint16()];
                 this.loop = (this.flags[0] & 0x1) !== 0;

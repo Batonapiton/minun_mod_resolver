@@ -1594,8 +1594,10 @@ Model.prototype.toJSON = function (pcs, options) {
         });
 
         if (!options.isShadow) {
+            console.log(pcs.motions)
             Object.keys(pcs.motions).forEach((key) => {
-
+                console.log("key")
+                console.log(key)
                 const files = pcs.motions[key].files;
                 const prefix = key[0].toUpperCase() + key.slice(1);
 
